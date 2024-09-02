@@ -54,7 +54,9 @@ const insuranceProducts = [
   }
 ];
 
-//===== ROUTES AND CHAT CONTEXT =====//
+//===== ENDPOINTS =====//
+
+//===== CHAT ENDPOINT =====//
 // Route to handle chat messages
 // The route takes a message and context as input and returns a reply and updated context
 // The context is used to keep track of the conversation flow
@@ -112,6 +114,14 @@ app.post('/chat', async (req, res) => {
   responseText = await generateText(message);
   res.json({ reply: responseText, context: { step: 'end' } });
 });
+
+
+//===== HEALTH CHECK ENDPOINT =====//
+
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 
 //===== SERVER =====//
 // The server listens on port 5000 by default
